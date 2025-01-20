@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/main.gd" type="Script" id=1]
+[ext_resource path="res://TileSet.tres" type="TileSet" id=2]
+[ext_resource path="res://Scenes/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/player.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Skull.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Skelleton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Vampire.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/SilverKey.tscn" type="PackedScene" id=8]
+
+[node name="Node2D" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+enemy_1_path = NodePath("Enemies/Skull2")
+enemy_2_path = NodePath("Enemies/Skelleton2")
+enemy_3_path = NodePath("Enemies/Vampire2")
+silver_key_path = NodePath("SilverKey")
+enemies_needed_for_silver_key = 3
+
+[node name="TileMap" type="TileMap" parent="." index="0"]
+
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 32
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray(  )
+_sections_unfolded = [ "Cell" ]
+
+[node name="Player" type="YSort" parent="." index="1"]
+
+visible = false
+sort_enabled = true
+
+[node name="Player" parent="Player" index="0" instance=ExtResource( 3 )]
+
+position = Vector2( 0, 0 )
+script = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Camera2D" type="Camera2D" parent="Player/Player" index="2"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -310
+limit_top = -350
+limit_right = 510
+limit_bottom = 420
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Limit", "Transform" ]
+
+[node name="Enemies" type="YSort" parent="." index="2"]
+
+visible = false
+sort_enabled = true
+
+[node name="Skull" parent="Enemies" index="0" instance=ExtResource( 5 )]
+
+position = Vector2( -119.141, -82.6352 )
+_sections_unfolded = [ "Transform" ]
+patrol_start = Vector2( -120, -80 )
+patrol_end = Vector2( 120, -80 )
+patrol_speed = 50
+
+[node name="Skull2" parent="Enemies" index="1" instance=ExtResource( 5 )]
+
+position = Vector2( -372, -78.0119 )
+_sections_unfolded = [ "Transform" ]
+patrol_start = Vector2( -372, -75 )
+patrol_end = Vector2( -245, -75 )
+patrol_speed = 50
+
+[node name="Skelleton" parent="Enemies" index="2" instance=ExtResource( 6 )]
+
+position = Vector2( 350.848, 57.3745 )
+patrol_start = Vector2( 360, 120 )
+patrol_end = Vector2( 360, -80 )
+patrol_speed = 60
+
+[node name="Skelleton2" parent="Enemies" index="3" instance=ExtResource( 6 )]
+
+position = Vector2( -220, -60 )
+_sections_unfolded = [ "Transform" ]
+patrol_start = Vector2( -220, -60 )
+patrol_end = Vector2( -220, 80 )
+patrol_speed = 60
+
+[node name="Vampire" parent="Enemies" index="4" instance=ExtResource( 7 )]
+
+position = Vector2( 196.699, -65.9442 )
+patrol_start = Vector2( 170, -80 )
+patrol_end = Vector2( 360, -80 )
+patrol_speed = 70
+
+[node name="Vampire2" parent="Enemies" index="5" instance=ExtResource( 7 )]
+
+position = Vector2( -373.294, 65.6472 )
+_sections_unfolded = [ "Transform" ]
+patrol_start = Vector2( -372, 65 )
+patrol_end = Vector2( -245, -80 )
+patrol_speed = 70
+
+[node name="SilverKey" parent="." index="3" instance=ExtResource( 8 )]
+
+visible = false
+position = Vector2( -363.572, -79.4506 )
+scale = Vector2( 1.5, 1.5 )
+_sections_unfolded = [ "Visibility" ]
+
+

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_2_1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_2_2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_2_3.png" type="Texture" id=3]
+[ext_resource path="res://Assets/2D Pixel Dungeon Asset Pack/items and trap_animation/keys/keys_2_4.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 3.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 5.07726, 3.9439 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="StaticBody2D" index="0"]
+
+frames = SubResource( 1 )
+animation = "default"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+
+position = Vector2( 0.699303, 0 )
+shape = SubResource( 2 )
+
+
